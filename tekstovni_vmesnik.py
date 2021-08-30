@@ -5,7 +5,11 @@ from model import Viri
 from model import QR_kodirnik
 import qrcode
 
-moj_model = Model()
+IME_DATOTEKE = "stanje.json"
+try:
+    moj_model = Model.preberi_iz_datoteke(IME_DATOTEKE)
+except FileNotFoundError:
+    moj_model = Model()
 
 SHRANJEVALEC_VIROV = "1"
 QR_KODIRNIK = "2"
@@ -83,6 +87,7 @@ def tekstovni_vmesnik():
                 elif ukaz2 == NAZAJ_3:
                     break
         elif ukaz == IZHOD:
+            moj_model.shrani_v_datoteko(IME_DATOTEKE)
             print("Nasvidenje")
             break
 
