@@ -1,4 +1,5 @@
 from datetime import date
+import datetime
 import json
 
 class Model:
@@ -20,6 +21,7 @@ class Model:
         model.teme = [
             Tema.iz_slovarja(sl_tem) for sl_tem in slovar["teme"]
         ]
+        return model
 
     def shrani_v_datoteko(self, ime_datoteke):
         with open(ime_datoteke, "w") as dat:
@@ -63,15 +65,16 @@ class Viri:
         return {
             "ime": self.ime,
             "opis": self.opis,
-            "datum": self.datum,
+            "datum": self.datum ,
         }
 
     @staticmethod
     def iz_slovarja(slovar):
+        dat = slovar["datum"].split(".")
         return Viri(
             slovar["ime"],
             slovar["opis"],
-            slovar["datum"],
+            datetime.date(int(dat[2]),int(dat[1]),int(dat[0])),
         )
 
 class QR_kodirnik:
