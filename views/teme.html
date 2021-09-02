@@ -1,0 +1,34 @@
+% rebase('baza.html')
+
+<table class="table is-hoverable is-fullwidth">
+    <thead>
+        <tr>
+            <form method="POST" action="/dodaj_temo/">
+                <td></td>
+                <td>
+                    <div class="control has-icons-left">
+                        <input class="input is-small" type="text" name="ime" placeholder="ime teme">
+                        <span class="icon is-small is-left">
+                            <i class="far fa-clipboard-check"></i>
+                        </span>
+                    </div>
+                </td>
+                <td>
+                    <div class="control">
+                        <button class="button is-info is-small">dodaj temo</button>
+                    </div>
+                </td>
+                <td></td>
+            </form>
+        </tr>
+    </thead>
+</table>
+
+% for indeks, tema in enumerate(t):
+    <form action="/poglej_vire/">
+    <input type="hidden" name="indeks" value="{{indeks}}">
+    <button class="button is-white">
+        {{tema.ime}}
+    </button>
+    </form>
+

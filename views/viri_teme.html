@@ -1,0 +1,18 @@
+% rebase('baza.html')
+
+% for indeks,vir in enumerate(viri):
+<article class="message is-info">
+    <div class="message-header">
+      <p>Vir:{{vir.ime}}</p>
+      <form method="POST" action="/odstrani_vir/">
+        <input type="hidden" name="tema" value="{{i}}">
+        <input type="hidden" name="indeks" value="{{indeks}}">
+        <button class="delete" aria-label="delete"></button>
+      </form>
+      
+    </div>
+    <div class="message-body">
+        <strong>Opis vira:</strong> {{vir.opis}}
+        <strong>Datum:</strong> {{vir.datum}}
+    </div>
+  </article>
