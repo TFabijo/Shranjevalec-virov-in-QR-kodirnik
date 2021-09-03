@@ -1,5 +1,35 @@
 % rebase('baza.html')
-
+<div class="content is-large">
+    <h1>{{ime}}</h1>
+</div>
+<table class="table is-hoverable is-fullwidth">
+    <thead>
+        <tr>
+            <form action="/prikazi_teme/">
+                <td>
+                    <div class="buttons">
+                        <button class="button is-info">Nazaj</button>
+                      </div>
+                </td>
+            </form>
+            
+            <form action="/obrazec_za_dodajanje_vira/">
+                <td>
+                </td>
+                <td>
+                    <div class="control">
+                        <input type="hidden" name="tema" value="{{i}}">
+                        <button class="button is-info">dodaj vir</button>
+                    </div>
+                </td>
+                <td></td>
+            </form>
+        </tr>
+    </thead>
+</table>
+<div class="content is-large">
+    <h3>Viri</h3>
+</div>
 % for indeks,vir in enumerate(viri):
 <article class="message is-info">
     <div class="message-header">
@@ -12,7 +42,8 @@
       
     </div>
     <div class="message-body">
-        <strong>Opis vira:</strong> {{vir.opis}}
-        <strong>Datum:</strong> {{vir.datum}}
+        <ul><strong>Opis vira:</strong> {{vir.opis}}</ul>
+        <ul><strong>Dodano:</strong> {{vir.datum}}</ul>    
     </div>
   </article>
+  %end

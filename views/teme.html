@@ -3,8 +3,15 @@
 <table class="table is-hoverable is-fullwidth">
     <thead>
         <tr>
+            <form action="/">
+                <td>
+                    <div class="buttons">
+                        <button class="button is-info">Nazaj</button>
+                      </div>
+                </td>
+            </form>
+            
             <form method="POST" action="/dodaj_temo/">
-                <td></td>
                 <td>
                     <div class="control has-icons-left">
                         <input class="input is-small" type="text" name="ime" placeholder="ime teme">
@@ -22,13 +29,30 @@
             </form>
         </tr>
     </thead>
+    <div class="content is-large">
+        <h1>Teme</h1>
+    </div>
+</table>
+<table class="table is-hoverable is-fullwidth">
+    % for indeks, tema in enumerate(t):
+    <tr>
+        <td>               
+                <form action="/poglej_vire/">
+                <input type="hidden" name="indeks" value="{{indeks}}">
+                <button class="button is-white">    
+                    {{tema.ime}}       
+                </button>
+                </form>    
+        </td>
+        <td>
+            <form method="POST" action="/odstrani_temo/">
+                <input type="hidden" name="indeks" value="{{indeks}}">
+                <button class="button is-info is-small">izbriši temo</button>
+            </form>
+        </td>
+        <td></td>
+    </tr>
+    %end
 </table>
 
-% for indeks, tema in enumerate(t):
-    <form action="/poglej_vire/">
-    <input type="hidden" name="indeks" value="{{indeks}}">
-    <button class="button is-white">
-        {{tema.ime}}
-    </button>
-    </form>
 
