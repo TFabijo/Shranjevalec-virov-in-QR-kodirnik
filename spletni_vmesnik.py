@@ -131,12 +131,13 @@ def poglej_vire():
 
 @bottle.get("/obrazec_za_dodajanje_vira/")
 def obrazec_za_dodajanje_vira():
+
     uporabnik = trenutni_uporabnik()
     indeks_teme = bottle.request.query.getunicode("tema")
     tema = uporabnik.model.teme[int(indeks_teme)]
     return bottle.template(
         "obrazec_za_dodajanje_vira.html",
-        napake = {},
+        napake = {} ,
         polja = {},
         ime = str(tema.ime).capitalize(),
         i = indeks_teme,
@@ -149,12 +150,13 @@ def dodaj_vir():
     indeks_teme = bottle.request.forms.getunicode("indeks_teme")
     vir = bottle.request.forms.getunicode("vir")
     opis = bottle.request.forms.getunicode("opis")
-    napake = {}
     polja = {"vir": vir}
     tema = uporabnik.model.teme[int(indeks_teme)]
     napake = tema.preveri_podatke_novega_vira(vir)
     if napake:
-        return bottle.template("obrazec_za_dodajanje_vira.html", napake=napake, polja=polja)
+        return bottle.template("obrazec_za_dodajanje_vira.html", napake=napake, polja=polja,ime = str(tema.ime).capitalize(),
+        i = indeks_teme,
+        t = tema)
     else:
         v = Viri(vir,opis)
         tema.dodaj_vir(v)

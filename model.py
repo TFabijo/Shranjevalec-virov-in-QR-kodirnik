@@ -119,8 +119,8 @@ class Tema:
         napake = {}
         if not vir:
             napake["vir"] = "vir mora biti neprazen."
-        for vir in self.viri:
-            if vir.ime == vir:
+        for v in self.viri:
+            if v.ime == vir:
                 napake["vir"] = "vir že obstaja."
         return napake
 

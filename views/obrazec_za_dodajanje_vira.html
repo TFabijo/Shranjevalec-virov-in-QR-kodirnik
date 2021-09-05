@@ -1,24 +1,37 @@
 % rebase('baza.html')
 
-<form method="POST">
+<div class="content is-large">
+    <h1>{{ime}}</h1>
+</div>
+
+<div class="content is-large">
+    <h4>Dodaj vir</h4>
+</div>
+
+<form method="POST" action="/dodaj_vir/">
     <div class="field">
-        <label class="label">Ime</label>
+        <label class="label">Vir</label>
         <div class="control has-icons-left has-icons-right">
-            <input class="input" name="ime" type="text" placeholder="ime spiska" value="{{polja.get('ime', '')}}">
+            <input class="input" name="vir" type="text" placeholder="www.vstavi.vir.com" value="{{polja.get('ime', '')}}">
             <span class="icon is-small is-left">
                 <i class="fas fa-clipboard-check"></i>
             </span>
         </div>
-        % if "ime" in napake:
-        <p class="help is-danger">{{ napake["ime"] }}</p>
+        % if "vir" in napake:
+        <p class="help is-danger">{{ napake["vir"] }}</p>
         % end
+    </div>
+    <div class="control">
+        <p><b>Opis</b></p>
+        <textarea class="textarea is-info" name="opis" placeholder="Info textarea"></textarea>
     </div>
     <div class="field is-grouped">
         <div class="control">
-            <button class="button is-link">Dodaj</button>
+            <input type="hidden" name="indeks_teme" value="{{i}}">
+            <button class="button is-info">Dodaj</button>
         </div>
         <div class="control">
-            <a class="button is-link is-light" href="/">Prekliči</a>
+            <a class="button is-link is-light" href="/poglej_vire/?indeks={{i}}">Prekliči</a>
         </div>
     </div>
 </form>
