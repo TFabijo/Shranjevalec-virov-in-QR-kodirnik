@@ -94,7 +94,9 @@ def prikazi_teme():
     uporabnik = trenutni_uporabnik()
     return bottle.template(
         "teme.html",
-        t = uporabnik.model.teme
+        t = uporabnik.model.teme,
+        polja = {},
+        napaka = {}
     )
 
 
@@ -102,10 +104,15 @@ def prikazi_teme():
 def dodaj_temo():
     uporabnik = trenutni_uporabnik()
     ime = bottle.request.forms.getunicode("ime")
-    tema = Tema(ime)
-    uporabnik.model.dodaj_temo(tema)
-    uporabnik.v_datoteko()
-    bottle.redirect("/prikazi_teme/")
+    polja = {"ime":ime}
+    napaka = uporabnik.model.preveri_podatke_nove_teme(ime)
+    if napaka:
+        return bottle.template("teme.html", t = uporabnik.model.teme, napaka=napaka, polja=polja)
+    else:
+        tema = Tema(ime)
+        uporabnik.model.dodaj_temo(tema)
+        uporabnik.v_datoteko()
+        bottle.redirect("/prikazi_teme/")
 
 @bottle.post("/odstrani_temo/")
 def odstrani_temo():

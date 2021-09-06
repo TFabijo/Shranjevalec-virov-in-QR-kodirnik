@@ -92,6 +92,14 @@ class Model:
             slovar = json.load(dat)
             return Model.iz_slovarja(slovar)
 
+    def preveri_podatke_nove_teme(self, ime):
+        napaka = {}
+        if not ime:
+            napaka["ime"] = "tema mora biti neprazna."
+        for t in self.teme:
+            if t.ime == ime:
+                napaka["ime"] = "tema že obstaja."
+        return napaka
     
 class Tema:
     def __init__(self,ime):

@@ -18,6 +18,9 @@
                         <span class="icon is-small is-left">
                             <i class="far fa-clipboard-check"></i>
                         </span>
+                        % if napaka:
+                        <p class="help is-danger">{{ napaka["ime"] }}</p>
+                        % end
                     </div>
                 </td>
                 <td>
