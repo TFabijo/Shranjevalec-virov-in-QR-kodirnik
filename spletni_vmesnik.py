@@ -1,3 +1,4 @@
+from re import template
 import bottle
 from os import error, path
 from model import Model
@@ -211,6 +212,10 @@ def izdelaj_QR():
         "koda.html",
         s = slika_ime
     )
+
+@bottle.error(404)
+def error_404(error):
+    return bottle.template("napaka.html")
  
 
 

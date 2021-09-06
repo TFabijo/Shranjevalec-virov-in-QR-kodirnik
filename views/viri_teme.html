@@ -33,7 +33,7 @@
 % for indeks,vir in enumerate(viri):
 <article class="message is-info">
     <div class="message-header">
-      <p>Vir:{{vir.ime}}</p>
+      <p>Vir:<a href="{{vir.ime}}" target="_blank">{{vir.ime}}</a></p>
       <form method="POST" action="/odstrani_vir/">
         <input type="hidden" name="tema" value="{{i}}">
         <input type="hidden" name="indeks" value="{{indeks}}">
