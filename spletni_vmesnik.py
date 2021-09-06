@@ -87,7 +87,7 @@ def prijava_post():
 @bottle.post("/odjava/")
 def odjava():
     bottle.response.delete_cookie(PISKOTEK_UPORABNISKO_IME, path="/")
-    bottle.response("/")        
+    bottle.redirect("/")        
 
 @bottle.get("/prikazi_teme/")
 def prikazi_teme():
@@ -95,6 +95,7 @@ def prikazi_teme():
     return bottle.template(
         "teme.html",
         t = uporabnik.model.teme,
+        u = uporabnik.uporabnisko_ime,
         polja = {},
         napaka = {}
     )
@@ -107,7 +108,7 @@ def dodaj_temo():
     polja = {"ime":ime}
     napaka = uporabnik.model.preveri_podatke_nove_teme(ime)
     if napaka:
-        return bottle.template("teme.html", t = uporabnik.model.teme, napaka=napaka, polja=polja)
+        return bottle.template("teme.html", t = uporabnik.model.teme, napaka=napaka, polja=polja, u = uporabnik.uporabnisko_ime)
     else:
         tema = Tema(ime)
         uporabnik.model.dodaj_temo(tema)
@@ -133,7 +134,8 @@ def poglej_vire():
         i = indeks,
         ime = str(tema.ime).capitalize(),
         t = tema,
-        viri = tema.viri
+        viri = tema.viri,
+        u = uporabnik.uporabnisko_ime
     )
 
 
@@ -149,7 +151,8 @@ def obrazec_za_dodajanje_vira():
         polja = {},
         ime = str(tema.ime).capitalize(),
         i = indeks_teme,
-        t = tema 
+        t = tema,
+        u = uporabnik.uporabnisko_ime 
     )
 
 @bottle.post("/dodaj_vir/")
@@ -164,7 +167,7 @@ def dodaj_vir():
     if napake:
         return bottle.template("obrazec_za_dodajanje_vira.html", napake=napake, polja=polja,ime = str(tema.ime).capitalize(),
         i = indeks_teme,
-        t = tema)
+        t = tema, u = uporabnik.uporabnisko_ime)
     else:
         v = Viri(vir,opis)
         tema.dodaj_vir(v)
@@ -217,7 +220,7 @@ def izdelaj_QR():
     img.save(f"{slika_ime}.png")
     return bottle.template(
         "koda.html",
-        s = slika_ime
+        s = f"{ime_slike}.png"
     )
 
 @bottle.error(404)
