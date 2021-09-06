@@ -28,7 +28,6 @@ IZDELAJ_QR_KODO = "1"
 NAZAJ_3 = "2"
 
 
-
 def tekstovni_vmesnik():
     zacetni_pozdrav()
     while True:
@@ -39,8 +38,6 @@ def tekstovni_vmesnik():
         ])
         if ukaz == SHRANJEVALEC_VIROV:
             pozdrav_shranjevalca()
-            
-            
             while True:
                 prikaz_obstojecih_tem()
                 izberi1 = izberi_moznost([
@@ -114,8 +111,6 @@ def sprejem_podatkov_za_izdelavo_kode():
         print("QR-koda je uspešno izdelana")
         print("slika kode je na vašem računaliku")
 
-
-
 def zacetni_pozdrav():
     print("Lepo pozdravljeni")
 
@@ -130,7 +125,6 @@ def prikaz_obstojecih_tem():
     else:
         print("Trenuto ni nobene teme, zato morate ustvariti eno")
         dodaj_temo()
-
 
 def dodaj_temo():
     print("Vnesite ime teme")
@@ -255,7 +249,6 @@ def prikazi_vir(tema):
             return moznost
         else:
             print(f"Vnesti morate število med 1 in {len(tema.viri)}.")
-
 
 
 tekstovni_vmesnik()

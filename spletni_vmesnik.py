@@ -17,7 +17,6 @@ SKRIVNOST = "to bo pa tezko"
 def shrani_stanje(uporabnik):
     uporabnik.shrani_stanje()
 
-
 def trenutni_uporabnik():
     uporabnisko_ime = bottle.request.get_cookie(PISKOTEK_UPORABNISKO_IME, secret=SKRIVNOST)
     if uporabnisko_ime:
@@ -31,21 +30,13 @@ def podatki_uporabnika(uporabnisko_ime):
     except FileNotFoundError:
         bottle.redirect("prijava/")
             
-
 @bottle.get("/")
 def zacetna_stran():
-    bottle.redirect("/osnovna_stran/")
-
-
-@bottle.get("/osnovna_stran/")
-def osnovna_stran():
-    uporabnik = trenutni_uporabnik()
-    return bottle.template("domaca.html",uporabnik=uporabnik)
+    bottle.redirect("/prikazi_teme/")
 
 @bottle.get("/registracija/")
 def registracija_get():
     return bottle.template("registracija.html", napaka=None)
-
 
 @bottle.post("/registracija/")
 def registracija_post():
@@ -67,8 +58,6 @@ def registracija_post():
 @bottle.get("/prijava/")
 def prijava_get():
     return bottle.template("prijava.html", napaka = None)
-
-
 
 @bottle.post("/prijava/")
 def prijava_post():
@@ -99,7 +88,6 @@ def prikazi_teme():
         polja = {},
         napaka = {}
     )
-
 
 @bottle.post("/dodaj_temo/")
 def dodaj_temo():
@@ -138,10 +126,8 @@ def poglej_vire():
         u = uporabnik.uporabnisko_ime
     )
 
-
 @bottle.get("/obrazec_za_dodajanje_vira/")
 def obrazec_za_dodajanje_vira():
-
     uporabnik = trenutni_uporabnik()
     indeks_teme = bottle.request.query.getunicode("tema")
     tema = uporabnik.model.teme[int(indeks_teme)]
@@ -174,7 +160,6 @@ def dodaj_vir():
         uporabnik.v_datoteko()
         bottle.redirect(f"/poglej_vire/?indeks={indeks_teme}")
 
-
 @bottle.post("/odstrani_vir/")
 def odstrani_vir():
     uporabnik = trenutni_uporabnik()
@@ -185,52 +170,8 @@ def odstrani_vir():
     uporabnik.v_datoteko()
     bottle.redirect(f"/poglej_vire/?indeks={indeks_teme}")
 
-#@bottle.post("/dodaj_vir/")
-#def dodaj_vir():
-    #indeks_teme = bottle.request.forms.getunicode("tema")
-    #ime = bottle.request.forms.getunicode("ime")
-    #opis = bottle.request.forms.getunicode("opis")
-    #vir = Viri(ime,opis)
-    #moj_model.teme[int(indeks_teme)].dodaj_vir(vir)
-    #moj_model.shrani_v_datoteko(IME_DATOTEKE)
-    #bottle.redirect(f"/poglej_vire/?indeks={indeks_teme}")
-
-@bottle.get("/qr_kodirnik/")
-def zavetna_qr_kodirnik():
-    trenutni_uporabnik()
-    return bottle.template(
-        "QR-kodirnik.html"
-    )
-
-@bottle.post("/izdelaj_QR/")
-def izdelaj_QR():
-    vir = bottle.request.forms.getunicode("vir")
-    ime_slike = bottle.request.forms.getunicode("ime")
-    nova_koda = QR_kodirnik(vir,ime_slike)
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=5,
-    )
-    slika_ime = str(nova_koda.ime_slike).replace(" ", "_")
-    qr.add_data(f"{nova_koda.vir}")
-    qr.make(fit=True)
-    img = qr.make_image(fill_color="black", back_color="white")
-    img.save(f"{slika_ime}.png")
-    return bottle.template(
-        "koda.html",
-        s = f"{ime_slike}.png"
-    )
-
 @bottle.error(404)
 def error_404(error):
     return bottle.template("napaka.html")
  
-
-
-
-
-
-
 bottle.run(reloader=True,debug=True)

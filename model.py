@@ -29,6 +29,7 @@ class Uporabnik:
             "zasifrirano_geslo": self.zasifrirano_geslo,
             "model": self.model.v_slovar()
         }
+
     def v_datoteko(self):
         with open(Uporabnik.ime_uporabnikove_datoteke(self.uporabnisko_ime),"w") as datoteka:
             json.dump(self.v_slovar(),datoteka,ensure_ascii=False, indent=4)
@@ -39,7 +40,6 @@ class Uporabnik:
     def nastavi_geslo(self,geslo_v_cistopisu):
         self.zasifrirano_geslo = zasifriraj_geslo(geslo_v_cistopisu)
 
-    
     @staticmethod
     def ime_uporabnikove_datoteke(uporabnisko_ime):
         return f"{uporabnisko_ime}.json"

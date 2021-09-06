@@ -2,7 +2,7 @@
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <h1><b>Shranjevalec virov in QR-kodirnik</b></h1>
+      <h1><b>Shranjevalec virov</b></h1>
     </div>
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-end">
@@ -21,16 +21,13 @@
         </div>
       </div>
     </div>
-  </nav>
+</nav>
 
 <table class="table is-hoverable is-fullwidth">
     <thead>
         <tr>
             <form action="/osnovna_stran/">
                 <td>
-                    <div class="buttons">
-                        <button class="button is-info">Nazaj</button>
-                      </div>
                 </td>
             </form>
             
@@ -66,7 +63,7 @@
                 <form action="/poglej_vire/">
                 <input type="hidden" name="indeks" value="{{indeks}}">
                 <button class="button is-white">    
-                    {{tema.ime}}       
+                    <b>{{tema.ime}}</b>       
                 </button>
                 </form>    
         </td>
