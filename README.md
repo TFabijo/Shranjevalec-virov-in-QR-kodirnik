@@ -1,7 +1,7 @@
 # Shranjevalec-virov-in-QR-kodirnik
 Projetna naloga pri predmetun Uvod v programiranje.
 Dandanes veliko količino podatkov dobimo iz spletna, razne uporabne spletne strani pa si težko zapolnimo ali si jih moramo nekje zapisati. V ta namen sem naredil program, v
-katerega sil lahko shrnjuješ internetne vire, po raznih tematikah in jim celo dodajaš opise, ki nam pomagajo, da lažje razberemo kaj je vsebina tega internetnega vira.
+katerega sil lahko shranjuješ internetne vire, po raznih tematikah in jim celo dodajaš opise, ki nam pomagajo, da lažje razberemo kaj je vsebina tega internetnega vira.
 
 # Zagon programa
 Strežnik se požene z ukazom Run Python File in Terminal v datoteki spletni_vmesnik.py.
