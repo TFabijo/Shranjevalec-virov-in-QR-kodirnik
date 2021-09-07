@@ -10,6 +10,6 @@ Na spletni strani se je potrebno najprej registrirati še le nato pa se lahko pr
 
 # Opombe
 V tekstovnem umesniku je narejen tudi QR-Kodirnik, ki izdela QR-kodo za naš spletni vir. V ta namen si moramo najprej naložiti predpripravo in sicer,
-v Ukazni pozivi prilepimo sledeče "pip install qrcode[pil]" in potrdimo, tako je predpriprava končana in tekstovni umesnik pripravljen za delo.
+v Ukazni pozivi prilepimo sledeče **pip install qrcode[pil]** in potrdimo, tako je predpriprava končana in tekstovni umesnik pripravljen za delo.
 Tekstovni umesnik prav tako poženemo z Run Python File in Terminal v datoteki tekstovni_vmesnik.py.
 
